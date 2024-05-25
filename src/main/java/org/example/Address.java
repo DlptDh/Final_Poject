@@ -1,5 +1,6 @@
 package org.example;
 
+
 public class Address {
     private int streetNo;
     private String street;
@@ -27,20 +28,13 @@ public class Address {
     }
 
     public static boolean isPostalCodeValid(String postalCode) {
-        if (postalCode == null || postalCode.length() != 6 && postalCode.length() != 7) return false;
-
-        postalCode = postalCode.replaceAll(" ", "").toUpperCase();
-        if (postalCode.length() != 6) return false;
-
-        for (int i = 0; i < postalCode.length(); i++) {
-            char c = postalCode.charAt(i);
-            if (i % 2 == 0) {
-                if (!Character.isLetter(c)) return false;
-            } else {
-                if (!Character.isDigit(c)) return false;
-            }
+        postalCode = postalCode.toUpperCase();
+        if (postalCode.length() == 6) {
+            return postalCode.matches("[A-Z][0-9][A-Z][0-9][A-Z][0-9]");
+        } else if (postalCode.length() == 7) {
+            return postalCode.matches("[A-Z][0-9][A-Z] [0-9][A-Z][0-9]");
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -53,14 +47,12 @@ public class Address {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Address address = (Address) obj;
-        return streetNo == address.streetNo &&
-                street.equals(address.street) &&
-                city.equals(address.city) &&
-                province.equals(address.province) &&
-                postalCode.equals(address.postalCode) &&
-                country.equals(address.country);
+        return streetNo == address.streetNo && street.equals(address.street) && city.equals(address.city)
+                && province.equals(address.province) && postalCode.equals(address.postalCode)
+                && country.equals(address.country);
     }
 
+    // Getters and Setters
     public int getStreetNo() {
         return streetNo;
     }
@@ -100,8 +92,6 @@ public class Address {
     public void setPostalCode(String postalCode) {
         if (isPostalCodeValid(postalCode)) {
             this.postalCode = postalCode.toUpperCase();
-        } else {
-            this.postalCode = null;
         }
     }
 
@@ -113,4 +103,3 @@ public class Address {
         this.country = country;
     }
 }
-

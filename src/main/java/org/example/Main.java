@@ -1,17 +1,31 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Address address = new Address(123, "Main Street", "Vancouver", "BC", "V6B1A1", "Canada");
+        Department department = new Department("D01", "Computer Science");
+        Student student = new Student("Lionel Messi", Gender.MALE, address, department);
+        Course course = new Course("Programming 1", 3.0, department);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        System.out.println(address);
+        System.out.println(department);
+        System.out.println(student);
+        System.out.println(course);
+
+        // Adding assignments and registering a student to the course
+        course.addAssignment("Assignment 1", 0.2, 100);
+        course.addAssignment("Assignment 2", 0.3, 100);
+        course.addAssignment("Final Exam", 0.5, 100);
+
+        course.registerStudent(student);
+        course.generateScores();
+        course.displayScores();
+
+        // Creating more students and registering them to the course
+        Student student2 = new Student("Michael JordN", Gender.FEMALE, address, department);
+        course.registerStudent(student2);
+        course.generateScores();
+        course.displayScores();
     }
 }
