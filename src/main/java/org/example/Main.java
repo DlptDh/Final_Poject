@@ -4,7 +4,7 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Address address = new Address(123, "Main Street", "Vancouver", "BC", "V6B1A1", "Canada");
-        Department department = new Department("D01", "Computer Science");
+        Department department = new Department("Computer Science");
         Student student = new Student("Lionel Messi", Gender.MALE, address, department);
         Course course = new Course("Programming 1", 3.0, department);
 
@@ -23,7 +23,7 @@ public class Main {
         course.displayScores();
 
         // Creating more students and registering them to the course
-        Student student2 = new Student("Michael JordN", Gender.FEMALE, address, department);
+        Student student2 = new Student("Michael Jordan", Gender.MALE, address, department);
         course.registerStudent(student2);
         course.generateScores();
         course.displayScores();

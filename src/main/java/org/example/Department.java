@@ -7,7 +7,7 @@ public class Department {
     private String departmentName;
     private static int nextId = 1;
 
-    public Department(String departmentName, String s) {
+    public Department(String departmentName) {
         if (validateDepartmentName(departmentName)) {
             this.departmentId = "D" + String.format("%02d", nextId++);
             this.departmentName = Util.toTitleCase(departmentName);
